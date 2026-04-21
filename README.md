@@ -1,1 +1,1 @@
-# mockbean
+# MockBean - AI chatbot app preparing for java junior developer interviews
