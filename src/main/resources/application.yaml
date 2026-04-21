@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: mockbean
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mockbean_db
+    username: mockbean_user
+    password: mockbean_password
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
