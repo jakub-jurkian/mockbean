@@ -18,3 +18,14 @@ langchain4j:
       base-url: http://localhost:11434
       model-name: llama3.1
       temperature: 0.0
+    embedding-model:
+      base-url: http://localhost:11434
+      model-name: nomic-embed-text
+  pgvector:
+    host: localhost
+    port: 5432
+    database: mockbean_db
+    user: mockbean_user
+    password: mockbean_password
+    table: embeddings
+    dimension: 768
