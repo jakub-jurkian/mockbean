@@ -12,3 +12,9 @@ spring:
   flyway:
     enabled: true
     baseline-on-migrate: true
+langchain4j:
+  ollama:
+    chat-model:
+      base-url: http://localhost:11434
+      model-name: llama3.1
+      temperature: 0.0
