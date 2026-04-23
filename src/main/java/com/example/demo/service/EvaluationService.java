@@ -1,8 +1,10 @@
 package com.example.demo.service;
 
 import com.example.demo.ai.TechnicalInterviewer;
+import com.example.demo.domain.EvaluationLog;
 import com.example.demo.domain.EvaluationRequest;
 import com.example.demo.domain.EvaluationResponse;
+import com.example.demo.repository.EvaluationLogRepository;
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.embedding.EmbeddingModel;
@@ -21,6 +23,7 @@ public class EvaluationService {
     private final EmbeddingStore<TextSegment> embeddingStore;
     private final EmbeddingModel embeddingModel;
     private final TechnicalInterviewer technicalInterviewer;
+    private final EvaluationLogRepository logRepository;
 
     public EvaluationResponse evaluateCandidate(EvaluationRequest request) {
         log.info("Starting evaluation process for question: {}", request.question());
@@ -47,7 +50,23 @@ public class EvaluationService {
                 request.userAnswer()
         );
 
+        saveEvaluationLog(request, response);
+
         log.info("Evaluation completed successfully. Final score: {}", response.score());
         return response;
+    }
+
+    private void saveEvaluationLog(EvaluationRequest request, EvaluationResponse response) {
+        EvaluationLog logEntry = EvaluationLog.builder()
+                .question(request.question())
+                .userAnswer(request.userAnswer())
+                .score(response.score())
+                .feedback(response.feedback())
+                .strengths(response.strengths())
+                .missedConcepts(response.missedConcepts())
+                .build();
+
+        logRepository.save(logEntry);
+        log.debug("Saved evaluation log entry with ID: {}", logEntry.getId());
     }
 }
