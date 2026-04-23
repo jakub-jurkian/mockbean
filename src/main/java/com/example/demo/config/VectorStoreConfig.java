@@ -1,6 +1,9 @@
 package com.example.demo.config;
 
+import com.example.demo.ai.TechnicalInterviewer;
 import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.service.AiServices;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.pgvector.PgVectorEmbeddingStore;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +22,13 @@ public class VectorStoreConfig {
                 .password("mockbean_password")
                 .table("embeddings")
                 .dimension(768)
+                .build();
+    }
+
+    @Bean
+    public TechnicalInterviewer technicalInterviewer(ChatLanguageModel chatLanguageModel) {
+        return AiServices.builder(TechnicalInterviewer.class)
+                .chatLanguageModel(chatLanguageModel)
                 .build();
     }
 }
