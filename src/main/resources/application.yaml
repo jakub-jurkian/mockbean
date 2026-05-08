@@ -12,6 +12,13 @@ spring:
   flyway:
     enabled: true
     baseline-on-migrate: true
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+
 langchain4j:
   ollama:
     chat-model:
