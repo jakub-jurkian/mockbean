@@ -6,22 +6,28 @@ import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.pgvector.PgVectorEmbeddingStore;
+import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@RequiredArgsConstructor
+@EnableConfigurationProperties(PgVectorProperties.class)
 public class VectorStoreConfig {
+
+    private final PgVectorProperties pgVectorProperties;
 
     @Bean
     public EmbeddingStore<TextSegment> pgVectorStore() {
         return PgVectorEmbeddingStore.builder()
-                .host("localhost")
-                .port(5432)
-                .database("mockbean_db")
-                .user("mockbean_user")
-                .password("mockbean_password")
-                .table("embeddings")
-                .dimension(768)
+                .host(pgVectorProperties.host())
+                .port(pgVectorProperties.port())
+                .database(pgVectorProperties.database())
+                .user(pgVectorProperties.user())
+                .password(pgVectorProperties.password())
+                .table(pgVectorProperties.table())
+                .dimension(pgVectorProperties.dimension())
                 .build();
     }
 
