@@ -1,0 +1,15 @@
+langchain4j:
+  anthropic:
+    chat-model:
+      api-key: ${ANTHROPIC_API_KEY}
+      model-name: claude-sonnet-4-6
+      temperature: 0.0
+      max-tokens: 1024
+  # Embeddings still use local Ollama — no cost, no latency hit
+  ollama:
+    embedding-model:
+      base-url: http://localhost:11434
+      model-name: nomic-embed-text
+  # Disable Ollama chat model auto-config so it doesn't conflict with Anthropic bean
+    chat-model:
+      enabled: false
