@@ -2,325 +2,325 @@
   {
     "id": 1,
     "topic": "Core Java",
-    "question": "Jaka jest różnica między operatorem == a metodą equals()?",
-    "candidateAnswer": "Operator == porównuje referencje — czyli sprawdza czy dwa obiekty wskazują na to samo miejsce w pamięci. Metoda equals() porównuje wartości obiektów. Dla typów prymitywnych jak int czy char == porównuje wartości, bo prymitywy nie mają referencji.",
+    "question": "What is the difference between the == operator and the equals() method?",
+    "candidateAnswer": "The == operator compares references — it checks whether two objects point to the same memory location. The equals() method compares the values of objects. For primitive types like int or char, == compares values because primitives have no references.",
     "label": "correct",
-    "humanNote": "Pełna, precyzyjna odpowiedź. Kandydat rozróżnił prymitywy od obiektów i poprawnie opisał oba operatory."
+    "humanNote": "Full, precise answer. Candidate correctly distinguished primitives from objects and described both operators accurately."
   },
   {
     "id": 2,
     "topic": "Core Java",
-    "question": "Co to jest Optional i jaki problem rozwiązuje?",
-    "candidateAnswer": "Optional to kontener który może zawierać wartość albo być pusty. Wprowadzono go w Javie 8 żeby ograniczyć NullPointerException — zamiast zwracać null z metody, zwracamy Optional i zmuszamy programistę do jawnego obsłużenia braku wartości przez isPresent(), orElse() albo map().",
+    "question": "What is Optional and what problem does it solve?",
+    "candidateAnswer": "Optional is a container that may or may not hold a value. It was introduced in Java 8 to reduce NullPointerExceptions — instead of returning null from a method, we return an Optional and force the caller to explicitly handle the absence of a value using isPresent(), orElse(), or map().",
     "label": "correct",
-    "humanNote": "Trafnie wymieniony cel (NPE), wersja Javy i przykładowe metody. Odpowiedź konkretna i technicznie poprawna."
+    "humanNote": "Correctly identified the purpose (NPE), the Java version, and example methods. Concrete and technically accurate."
   },
   {
     "id": 3,
     "topic": "Core Java",
-    "question": "Co oznacza słowo kluczowe synchronized?",
-    "candidateAnswer": "synchronized blokuje dostęp do metody lub bloku kodu tak, że w danej chwili tylko jeden wątek może go wykonywać. Zapobiega to race condition — sytuacji gdzie dwa wątki jednocześnie modyfikują tę samą zmienną i wynik zależy od kolejności ich wykonania.",
+    "question": "What does the synchronized keyword mean?",
+    "candidateAnswer": "synchronized locks access to a method or code block so that only one thread can execute it at a time. This prevents race conditions — situations where two threads simultaneously modify the same variable and the result depends on the order of execution.",
     "label": "correct",
-    "humanNote": "Wymieniona blokada, race condition i mechanizm działania. Poprawna i wyczerpująca odpowiedź."
+    "humanNote": "Mentioned locking, race condition, and the mechanism. Correct and thorough answer."
   },
   {
     "id": 4,
     "topic": "Core Java",
-    "question": "Co to jest Garbage Collector i jak działa?",
-    "candidateAnswer": "GC to mechanizm JVM który automatycznie zwalnia pamięć na stercie zajmowaną przez obiekty, do których nie istnieje już żadna żywa referencja. Działa w tle i jest uruchamiany przez JVM — programista nie musi ręcznie dealokować pamięci jak w C++.",
+    "question": "What is the Garbage Collector and how does it work?",
+    "candidateAnswer": "The GC is a JVM mechanism that automatically frees heap memory occupied by objects that no longer have any live references. It runs in the background and is triggered by the JVM — the programmer does not need to manually deallocate memory as in C++.",
     "label": "correct",
-    "humanNote": "Poprawnie: sterta, brak referencji, automatyzm. Porównanie z C++ to dobry plus."
+    "humanNote": "Correct: heap, no references, automation. Comparison with C++ is a nice bonus."
   },
   {
     "id": 5,
     "topic": "Core Java",
-    "question": "Czym jest interfejs funkcyjny?",
-    "candidateAnswer": "Interfejs funkcyjny ma dokładnie jedną abstrakcyjną metodę. Dzięki temu może być użyty jako typ docelowy dla lambdy. Możemy go oznaczyć @FunctionalInterface, żeby kompilator pilnował tego wymagania. Może mieć dowolną liczbę metod default i static.",
+    "question": "What is a functional interface?",
+    "candidateAnswer": "A functional interface has exactly one abstract method. This allows it to be used as a target type for a lambda. We can annotate it with @FunctionalInterface so the compiler enforces this requirement. It may have any number of default and static methods.",
     "label": "correct",
-    "humanNote": "Kompletna odpowiedź: SAM, lambda, @FunctionalInterface, dopuszczalne metody default/static."
+    "humanNote": "Complete answer: SAM, lambda, @FunctionalInterface, allowed default/static methods."
   },
   {
     "id": 6,
     "topic": "Core Java",
-    "question": "Jakie są modyfikatory dostępu w Javie i czym się różnią?",
-    "candidateAnswer": "Java ma cztery modyfikatory dostępu: public — widoczny wszędzie; protected — widoczny w tym samym pakiecie i w podklasach; package-private (brak słowa kluczowego) — widoczny tylko w pakiecie; private — widoczny tylko w tej samej klasie.",
+    "question": "What are the access modifiers in Java and how do they differ?",
+    "candidateAnswer": "Java has four access modifiers: public — visible everywhere; protected — visible within the same package and in subclasses; package-private (no keyword) — visible only within the package; private — visible only within the same class.",
     "label": "correct",
-    "humanNote": "Wszystkie cztery modyfikatory wymienione z poprawnymi zasięgami. Kandydat użył prawidłowej nazwy 'package-private' i wyjaśnił brak słowa kluczowego."
+    "humanNote": "All four modifiers listed with correct scopes. Candidate used the proper term 'package-private' and explained the absence of a keyword."
   },
   {
     "id": 7,
     "topic": "OOP",
-    "question": "Na czym polega zasada Open/Closed Principle?",
-    "candidateAnswer": "OCP mówi, że klasy powinny być otwarte na rozszerzenie, ale zamknięte na modyfikację. Znaczy to, że nowe zachowanie dodajemy przez implementację interfejsu lub dziedziczenie, a nie przez zmianę istniejącego kodu. Klasyczny przykład to wzorzec Strategy — zamiast dorzucać if-else do klasy, tworzymy nową implementację interfejsu.",
+    "question": "What is the Open/Closed Principle?",
+    "candidateAnswer": "OCP states that classes should be open for extension but closed for modification. This means new behaviour is added by implementing an interface or through inheritance, not by changing existing code. A classic example is the Strategy pattern — instead of adding if-else branches to a class, we create a new implementation of an interface.",
     "label": "correct",
-    "humanNote": "Definicja precyzyjna, mechanizm (interfejs/dziedziczenie) wyjaśniony, przykład ze wzorcem Strategy to wyraźny plus — wykracza poza minimum."
+    "humanNote": "Precise definition, mechanism (interface/inheritance) explained, Strategy pattern example goes beyond the minimum — clear plus."
   },
   {
     "id": 8,
     "topic": "OOP",
-    "question": "Czym jest abstrakcja w programowaniu obiektowym?",
-    "candidateAnswer": "Abstrakcja to ukrywanie szczegółów implementacji i eksponowanie tylko interfejsu. W Javie realizuje się ją przez klasy abstrakcyjne i interfejsy. Skupiamy się na 'co' obiekt robi, a nie 'jak' to robi — np. Collections.sort() — nie wiem jak sortuje wewnętrznie, ale wiem jak jej użyć.",
+    "question": "What is abstraction in object-oriented programming?",
+    "candidateAnswer": "Abstraction is about hiding implementation details and exposing only the interface. In Java it is achieved through abstract classes and interfaces. We focus on 'what' an object does rather than 'how' it does it — for example, Collections.sort() — I don't know how it sorts internally, but I know how to use it.",
     "label": "correct",
-    "humanNote": "Poprawna definicja, właściwe narzędzia (abstract class, interface), dobry przykład z Collections.sort(). Rozróżnienie 'co' vs 'jak' to sedno abstrakcji."
+    "humanNote": "Correct definition, correct tools (abstract class, interface), good example with Collections.sort(). The 'what' vs 'how' distinction is the essence of abstraction."
   },
 
   {
     "id": 9,
     "topic": "Core Java",
-    "question": "Czym różni się String, StringBuilder i StringBuffer?",
-    "candidateAnswer": "String jest niemutowalny, każda zmiana tworzy nowy obiekt. StringBuilder i StringBuffer są mutowalne, więc działają szybciej przy wielokrotnych modyfikacjach. Obu używa się podobnie.",
+    "question": "What is the difference between String, StringBuilder, and StringBuffer?",
+    "candidateAnswer": "String is immutable — every change creates a new object. StringBuilder and StringBuffer are mutable, so they are faster when making multiple modifications. Both are used in a similar way.",
     "label": "partial",
-    "humanNote": "Kandydat pominął kluczową różnicę między StringBuilder a StringBuffer — brak wzmianki o thread-safety i synchronizacji StringBuffer."
+    "humanNote": "Candidate omitted the key difference between StringBuilder and StringBuffer — no mention of thread-safety or synchronization of StringBuffer."
   },
   {
     "id": 10,
     "topic": "Core Java",
-    "question": "Co to jest Stream API?",
-    "candidateAnswer": "Stream API służy do przetwarzania kolekcji. Pozwala filtrować, sortować i mapować elementy. Jest dostępne od Javy 8.",
+    "question": "What is the Stream API?",
+    "candidateAnswer": "The Stream API is used for processing collections. It allows filtering, sorting, and mapping elements. It has been available since Java 8.",
     "label": "partial",
-    "humanNote": "Poprawne ale powierzchowne. Brak wzmianki o deklaratywnym charakterze, potoku operacji, leniwej ewaluacji ani możliwości zrównoleglenia. Tylko wymienione operacje."
+    "humanNote": "Correct but superficial. No mention of declarative style, operation pipelines, lazy evaluation, or parallelisation. Only basic operations listed."
   },
   {
     "id": 11,
     "topic": "OOP",
-    "question": "Na czym polega zasada Single Responsibility Principle?",
-    "candidateAnswer": "SRP mówi, że klasa powinna zajmować się tylko jedną rzeczą. Nie powinna łączyć logiki biznesowej z dostępem do bazy danych.",
+    "question": "What is the Single Responsibility Principle?",
+    "candidateAnswer": "SRP says that a class should do only one thing. It should not mix business logic with database access.",
     "label": "partial",
-    "humanNote": "Intuicja poprawna, przykład sensowny. Ale brak formalnej definicji 'jednego powodu do zmiany' — to jest rdzeń SRP według Martina."
+    "humanNote": "Intuition is correct, example is reasonable. But missing the formal definition of 'one reason to change' — that is the core of SRP according to Martin."
   },
   {
     "id": 12,
     "topic": "Core Java",
-    "question": "Jaka jest różnica między błędem (Error) a wyjątkiem (Exception)?",
-    "candidateAnswer": "Error to poważniejszy problem niż Exception. Oba dziedziczą po Throwable. Exception obsługujemy w try-catch, a Errory też można łapać ale nie powinno się tego robić.",
+    "question": "What is the difference between an Error and an Exception?",
+    "candidateAnswer": "An Error is a more serious problem than an Exception. Both inherit from Throwable. Exceptions are handled with try-catch, and Errors can technically be caught too but should not be.",
     "label": "partial",
-    "humanNote": "Poprawnie wspomniano hierarchię i to że Errorów nie należy łapać. Brak jednak wyjaśnienia skąd pochodzi Error (JVM) i konkretnych przykładów jak OutOfMemoryError."
+    "humanNote": "Correctly mentioned the hierarchy and that Errors should not be caught. Missing explanation of where Errors come from (JVM) and concrete examples like OutOfMemoryError."
   },
   {
     "id": 13,
     "topic": "Core Java",
-    "question": "Jaka jest różnica między operacjami map() a flatMap() w Stream API?",
-    "candidateAnswer": "map() transformuje każdy element strumienia na inny element. flatMap() też transformuje, ale chyba spłaszcza zagnieżdżone kolekcje — nie jestem pewien dokładnie jak to działa.",
+    "question": "What is the difference between map() and flatMap() in the Stream API?",
+    "candidateAnswer": "map() transforms each element of the stream into another element. flatMap() also transforms, but I think it flattens nested collections — I'm not entirely sure how it works exactly.",
     "label": "partial",
-    "humanNote": "map() wyjaśniony poprawnie. flatMap() zaznaczony intuicyjnie ale niepewnie — brak relacji 1:N i przykładu spłaszczania Stream<List<T>> do Stream<T>."
+    "humanNote": "map() explained correctly. flatMap() intuitively hinted at but uncertain — missing the 1:N relationship and an example of flattening Stream<List<T>> to Stream<T>."
   },
   {
     "id": 14,
     "topic": "Core Java",
-    "question": "Co oznacza słowo kluczowe synchronized?",
-    "candidateAnswer": "synchronized sprawia że dana metoda lub blok kodu może być w danym momencie wykonywany tylko przez jeden wątek. Używa się go kiedy wiele wątków współdzieli dane.",
+    "question": "What does the synchronized keyword mean?",
+    "candidateAnswer": "synchronized ensures that a given method or block of code can only be executed by one thread at a time. It is used when multiple threads share data.",
     "label": "partial",
-    "humanNote": "Mechanizm blokady opisany poprawnie. Brakuje jednak kluczowego pojęcia race condition oraz wyjaśnienia że synchronized działa na monitorze obiektu. Odpowiedź poprawna ale zbyt płytka dla juniora."
+    "humanNote": "Locking mechanism described correctly. Missing the key concept of race condition and the explanation that synchronized operates on an object monitor. Correct but too shallow for a junior."
   },
   {
     "id": 15,
     "topic": "OOP",
-    "question": "Czym jest hermetyzacja?",
-    "candidateAnswer": "Hermetyzacja polega na tym, że pola klasy ustawiamy jako private i udostępniamy je przez publiczne gettery i settery. Dzięki temu kontrolujemy dostęp do danych.",
+    "question": "What is encapsulation?",
+    "candidateAnswer": "Encapsulation means setting class fields as private and exposing them through public getters and setters. This way we control access to data.",
     "label": "partial",
-    "humanNote": "Mechanizm (private + gettery/settery) poprawnie opisany. Brakuje uzasadnienia 'dlaczego' — ochrona przed niekontrolowaną modyfikacją stanu i możliwość walidacji w seterze. Odpowiedź jest poprawna ale płytka."
+    "humanNote": "Mechanism (private + getters/setters) correctly described. Missing the 'why' — protection against uncontrolled state modification and the ability to validate in a setter. Correct but shallow."
   },
   {
     "id": 16,
     "topic": "Core Java",
-    "question": "Czym są wyrażenia lambda wprowadzone w Javie 8?",
-    "candidateAnswer": "Lambda to skrócony zapis anonimowej metody. Składnia to parametry, strzałka i ciało: (x) -> x * 2. Pozwala pisać krótszy kod zamiast anonimowych klas wewnętrznych.",
+    "question": "What are lambda expressions introduced in Java 8?",
+    "candidateAnswer": "A lambda is a shorthand notation for an anonymous method. The syntax is parameters, arrow, and body: (x) -> x * 2. It allows writing shorter code instead of anonymous inner classes.",
     "label": "partial",
-    "humanNote": "Składnia poprawna, analogia z klasą anonimową trafna. Brakuje połączenia z interfejsem funkcyjnym jako typem docelowym — bez tego definicja jest niekompletna."
+    "humanNote": "Syntax is correct, analogy with anonymous class is apt. Missing the connection to a functional interface as the target type — without that the definition is incomplete."
   },
 
   {
     "id": 17,
     "topic": "Core Java",
-    "question": "Co to jest String Pool w Javie?",
-    "candidateAnswer": "String Pool to obszar w pamięci stosu gdzie JVM trzyma literały tekstowe. Dzięki temu dwa Stringi o tej samej wartości wskazują na ten sam obiekt i oszczędzamy pamięć.",
+    "question": "What is the String Pool in Java?",
+    "candidateAnswer": "The String Pool is an area in stack memory where the JVM stores string literals. This way two Strings with the same value point to the same object and we save memory.",
     "label": "wrong",
-    "humanNote": "Błąd merytoryczny: String Pool jest na stercie (Heap), nie na stosie (Stack). Reszta poprawna."
+    "humanNote": "Technical error: the String Pool is on the heap, not the stack. The rest is correct."
   },
   {
     "id": 18,
     "topic": "Core Java",
-    "question": "Co to jest varargs w Javie?",
-    "candidateAnswer": "Varargs pozwala przekazać do metody dokładnie jeden argument danego typu bez tworzenia tablicy. Używa się ... w sygnaturze metody.",
+    "question": "What is varargs in Java?",
+    "candidateAnswer": "Varargs allows passing exactly one argument of a given type to a method without creating an array. The ... notation is used in the method signature.",
     "label": "wrong",
-    "humanNote": "Błąd definicyjny: varargs to zero lub więcej argumentów, nie dokładnie jeden. Składnia ... poprawna."
+    "humanNote": "Definitional error: varargs means zero or more arguments, not exactly one. The ... syntax is correct."
   },
   {
     "id": 19,
     "topic": "OOP",
-    "question": "Czy można utworzyć instancję klasy abstrakcyjnej?",
-    "candidateAnswer": "Tak, można tworzyć obiekty klas abstrakcyjnych za pomocą new, ale tylko jeśli zaimplementujemy wszystkie metody abstrakcyjne w konstruktorze.",
+    "question": "Can you instantiate an abstract class?",
+    "candidateAnswer": "Yes, you can create objects of abstract classes using new, but only if you implement all abstract methods inside the constructor.",
     "label": "wrong",
-    "humanNote": "Fundamentalny błąd: klasy abstrakcyjne nie mogą być instancjonowane przez new. Kandydat myli klasę abstrakcyjną z anonimową klasą wewnętrzną."
+    "humanNote": "Fundamental error: abstract classes cannot be instantiated with new. Candidate confuses an abstract class with an anonymous inner class."
   },
   {
     "id": 20,
     "topic": "OOP",
-    "question": "Jaka jest różnica między agregacją a kompozycją?",
-    "candidateAnswer": "W kompozycji obiekty mogą istnieć niezależnie od siebie — np. wydział i profesorowie. W agregacji obiekt podrzędny ginie razem z nadrzędnym — np. budynek i pokoje.",
+    "question": "What is the difference between aggregation and composition?",
+    "candidateAnswer": "In composition objects can exist independently — for example a department and its professors. In aggregation the child object is destroyed along with the parent — for example a building and its rooms.",
     "label": "wrong",
-    "humanNote": "Definicje odwrócone: to agregacja ma niezależność (wydział-profesorowie), a kompozycja to silna zależność (budynek-pokoje). Przykłady kandydat przypisał odwrotnie."
+    "humanNote": "Definitions are swapped: it is aggregation that has independence (department-professors), and composition that has strong dependency (building-rooms). Candidate assigned examples in reverse."
   },
   {
     "id": 21,
     "topic": "OOP",
-    "question": "Na czym polega zasada Open/Closed Principle?",
-    "candidateAnswer": "OCP oznacza że raz napisany kod nie powinien być nigdy modyfikowany. Zamknięty na zmiany znaczy że klasy są finalne i nie można po nich dziedziczyć.",
+    "question": "What is the Open/Closed Principle?",
+    "candidateAnswer": "OCP means that once written code should never be modified. Closed for modification means that classes are final and cannot be inherited from.",
     "label": "wrong",
-    "humanNote": "Błędna interpretacja: 'zamknięty na modyfikację' nie oznacza final. OCP chodzi o rozszerzanie przez polimorfizm/interfejsy bez ruszania istniejącego kodu."
+    "humanNote": "Incorrect interpretation: 'closed for modification' does not mean final. OCP is about extending behaviour through polymorphism/interfaces without touching existing code."
   },
   {
     "id": 22,
     "topic": "Core Java",
-    "question": "Czym jest interfejs funkcyjny?",
-    "candidateAnswer": "Interfejs funkcyjny to taki, który ma wiele metod abstrakcyjnych ale jedną główną. Adnotacja @FunctionalInterface wskazuje tę główną metodę która będzie użyta przez lambdę.",
+    "question": "What is a functional interface?",
+    "candidateAnswer": "A functional interface is one that has many abstract methods but one main one. The @FunctionalInterface annotation identifies that main method which will be used by a lambda.",
     "label": "wrong",
-    "humanNote": "Błąd definicyjny: interfejs funkcyjny ma dokładnie JEDNĄ metodę abstrakcyjną (SAM). @FunctionalInterface nie wskazuje żadnej 'głównej' metody — pilnuje że jest ich dokładnie jedna i zgłasza błąd kompilacji jeśli jest ich więcej."
+    "humanNote": "Definitional error: a functional interface has exactly ONE abstract method (SAM). @FunctionalInterface does not identify any 'main' method — it enforces that there is exactly one and throws a compile error if there are more."
   },
   {
     "id": 23,
     "topic": "Core Java",
-    "question": "Co to jest Garbage Collector i jak działa?",
-    "candidateAnswer": "GC działa na stosie i usuwa lokalne zmienne które wyszły poza zakres widoczności po zakończeniu metody. Dzięki temu pamięć jest zwalniana automatycznie.",
+    "question": "What is the Garbage Collector and how does it work?",
+    "candidateAnswer": "The GC works on the stack and removes local variables that have gone out of scope after a method ends. This allows memory to be freed automatically.",
     "label": "wrong",
-    "humanNote": "Fundamentalny błąd: GC operuje na stercie (heap), nie na stosie. Stos jest zarządzany automatycznie przez JVM przez push/pop ramek — GC go nie dotyka. Kandydat myli dwa różne mechanizmy zarządzania pamięcią."
+    "humanNote": "Fundamental error: the GC operates on the heap, not the stack. The stack is managed automatically by the JVM via push/pop of frames — the GC does not touch it. Candidate confuses two different memory management mechanisms."
   },
   {
     "id": 24,
     "topic": "Core Java",
-    "question": "Jaka jest różnica między operacjami map() a flatMap() w Stream API?",
-    "candidateAnswer": "flatMap() transformuje każdy element strumienia na dokładnie jeden inny element. map() natomiast pozwala spłaszczać zagnieżdżone struktury, np. Stream<List<String>> do Stream<String>.",
+    "question": "What is the difference between map() and flatMap() in the Stream API?",
+    "candidateAnswer": "flatMap() transforms each element of the stream into exactly one other element. map() on the other hand allows flattening nested structures, for example Stream<List<String>> to Stream<String>.",
     "label": "wrong",
-    "humanNote": "Definicje odwrócone: to map() robi transformację 1:1, a flatMap() spłaszcza zagnieżdżone strumienie (1:N). Kandydat zamienił obydwa pojęcia miejscami."
+    "humanNote": "Definitions are swapped: it is map() that does 1:1 transformation, and flatMap() that flattens nested streams (1:N). Candidate switched both concepts."
   },
 
   {
     "id": 25,
     "topic": "Core Java",
-    "question": "Co to jest Garbage Collector i jak działa?",
-    "candidateAnswer": "Garbage Collector to bardzo ważny mechanizm w Javie, który automatycznie zarządza pamięcią aplikacji w sposób wydajny i transparentny dla programisty, zapewniając optymalne działanie systemu i eliminując problemy związane z pamięcią.",
+    "question": "What is the Garbage Collector and how does it work?",
+    "candidateAnswer": "The Garbage Collector is a very important mechanism in Java that automatically manages application memory in an efficient and transparent way for the programmer, ensuring optimal system performance and eliminating memory-related problems.",
     "label": "waffle",
-    "humanNote": "Brzmi profesjonalnie, ale nie zawiera żadnej informacji technicznej. Brak: sterty, referencji, algorytmu działania. Sama ogólna pochwała mechanizmu."
+    "humanNote": "Sounds professional but contains no technical information. Missing: heap, references, algorithm. Just a general praise of the mechanism."
   },
   {
     "id": 26,
     "topic": "OOP",
-    "question": "Czym jest hermetyzacja?",
-    "candidateAnswer": "Hermetyzacja to bardzo istotna zasada programowania obiektowego, która pozwala pisać lepiej zorganizowany, czysty i bezpieczny kod poprzez odpowiednie strukturyzowanie klas i ich składowych.",
+    "question": "What is encapsulation?",
+    "candidateAnswer": "Encapsulation is a very important principle of object-oriented programming that allows writing better organised, clean, and secure code through proper structuring of classes and their members.",
     "label": "waffle",
-    "humanNote": "Zero treści technicznej. Brak słów kluczowych: private, getter, setter, ukrywanie stanu. Brzmi jakby kandydat przepisał wstęp z Wikipedii."
+    "humanNote": "Zero technical content. Missing keywords: private, getter, setter, hiding state. Sounds like the candidate copied the introduction from Wikipedia."
   },
   {
     "id": 27,
     "topic": "Core Java",
-    "question": "Czym są wyrażenia lambda?",
-    "candidateAnswer": "Wyrażenia lambda to nowoczesna funkcjonalność wprowadzona w Javie 8, która znacznie upraszcza kod i sprawia że jest bardziej elegancki, zwięzły i łatwiejszy w utrzymaniu dla programistów.",
+    "question": "What are lambda expressions?",
+    "candidateAnswer": "Lambda expressions are a modern feature introduced in Java 8 that greatly simplifies code and makes it more elegant, concise, and easier to maintain for developers.",
     "label": "waffle",
-    "humanNote": "Kandydat wie kiedy wprowadzono lambdy ale nic poza tym. Brak: anonymous function, functional interface, składni (parametry) -> ciało."
+    "humanNote": "Candidate knows when lambdas were introduced but nothing beyond that. Missing: anonymous function, functional interface, syntax (parameters) -> body."
   },
   {
     "id": 28,
     "topic": "OOP",
-    "question": "Na czym polega zasada Open/Closed Principle?",
-    "candidateAnswer": "OCP to zasada dobrego projektowania oprogramowania, która mówi że klasy powinny być od początku dobrze zaprojektowane, żeby w przyszłości nie trzeba było ich modyfikować i żeby system był skalowalny.",
+    "question": "What is the Open/Closed Principle?",
+    "candidateAnswer": "OCP is a principle of good software design that says classes should be well designed from the start so that they do not need to be modified in the future and the system remains scalable.",
     "label": "waffle",
-    "humanNote": "Kandydat opisuje ideę 'dobrego designu' ale pomija sedno: otwarte na rozszerzenie (extension) przez polimorfizm, zamknięte na modyfikację istniejącego kodu."
+    "humanNote": "Candidate describes the idea of 'good design' but misses the point: open for extension through polymorphism, closed for modification of existing code."
   },
   {
     "id": 29,
     "topic": "OOP",
-    "question": "Czym jest abstrakcja w programowaniu obiektowym?",
-    "candidateAnswer": "Abstrakcja polega na tym, że ukrywamy przed użytkownikiem rzeczy, które są dla niego nieistotne, i pokazujemy tylko to, co jest dla niego ważne. To sprawia, że kod jest prostszy w użyciu.",
+    "question": "What is abstraction in object-oriented programming?",
+    "candidateAnswer": "Abstraction means hiding things from the user that are not relevant to them and showing only what is important. This makes the code simpler to use.",
     "label": "waffle",
-    "humanNote": "Definicja intuicyjnie bliska prawdy, ale brak konkretów: klasy abstrakcyjne, interfejsy, 'co' vs 'jak'. Mogłoby to powiedzieć dziecko, nie junior developer."
+    "humanNote": "Definition is intuitively close but lacks specifics: abstract classes, interfaces, 'what' vs 'how'. A child could say this, not a junior developer."
   },
   {
     "id": 30,
     "topic": "Core Java",
-    "question": "Jaka jest różnica między błędem (Error) a wyjątkiem (Exception)?",
-    "candidateAnswer": "Są to dwa różne typy problemów które mogą wystąpić w aplikacji Java. Oba są częścią systemu obsługi błędów JVM i powinny być odpowiednio obsługiwane przez programistę w zależności od sytuacji i wymagań projektu.",
+    "question": "What is the difference between an Error and an Exception?",
+    "candidateAnswer": "These are two different types of problems that can occur in a Java application. Both are part of the JVM error handling system and should be handled appropriately by the programmer depending on the situation and project requirements.",
     "label": "waffle",
-    "humanNote": "Kandydat w ogóle nie wyjaśnia różnicy. Powiedzenie że 'oba są częścią systemu obsługi błędów' to banał. Brak: Throwable, JVM vs aplikacja, kiedy łapać a kiedy nie."
+    "humanNote": "Candidate does not explain the difference at all. Saying 'both are part of the error handling system' is trivial. Missing: Throwable, JVM vs application, when to catch and when not to."
   },
   {
     "id": 31,
     "topic": "Core Java",
-    "question": "Jakie są modyfikatory dostępu w Javie i czym się różnią?",
-    "candidateAnswer": "Modyfikatory dostępu to bardzo ważna część języka Java, która pozwala programistom kontrolować widoczność i dostępność elementów kodu w odpowiedni sposób, co jest kluczowe dla bezpieczeństwa i dobrej architektury aplikacji.",
+    "question": "What are the access modifiers in Java and how do they differ?",
+    "candidateAnswer": "Access modifiers are a very important part of the Java language that allows programmers to control the visibility and accessibility of code elements in an appropriate way, which is key for security and good application architecture.",
     "label": "waffle",
-    "humanNote": "Ani jednego modyfikatora nie wymieniono z nazwy. Kandydat opisuje po co służą modyfikatory zamiast wyjaśnić jakie są i czym się różnią. Klasyczne lanie wody."
+    "humanNote": "Not a single modifier named. Candidate describes what access modifiers are for instead of explaining what they are and how they differ. Classic padding."
   },
   {
     "id": 32,
     "topic": "OOP",
-    "question": "Jaka jest różnica między agregacją a kompozycją?",
-    "candidateAnswer": "Agregacja i kompozycja to dwa rodzaje relacji między obiektami w programowaniu obiektowym. Różnią się siłą powiązania między obiektami i mają różne zastosowania w zależności od tego jak obiekty są ze sobą powiązane w danym systemie.",
+    "question": "What is the difference between aggregation and composition?",
+    "candidateAnswer": "Aggregation and composition are two types of relationships between objects in object-oriented programming. They differ in the strength of the coupling between objects and have different use cases depending on how objects are related in a given system.",
     "label": "waffle",
-    "humanNote": "Kandydat tautologicznie mówi że 'różnią się siłą powiązania' bez wyjaśnienia co ta siła oznacza. Brak: 'has-a', niezależność istnienia, żadnego przykładu."
+    "humanNote": "Candidate tautologically says they 'differ in the strength of coupling' without explaining what that means. Missing: 'has-a', independence of existence, no example."
   },
 
   {
     "id": 33,
     "topic": "Core Java",
-    "question": "Jaka jest różnica między operatorem == a metodą equals()?",
-    "candidateAnswer": "To zależy od kontekstu i od tego jakich typów używamy. W niektórych sytuacjach oba zachowują się tak samo, w innych różnie. Trzeba to sprawdzić w dokumentacji dla konkretnej klasy.",
+    "question": "What is the difference between the == operator and the equals() method?",
+    "candidateAnswer": "It depends on the context and the types being used. In some situations both behave the same way, in others differently. You need to check the documentation for the specific class.",
     "label": "evasive",
-    "humanNote": "Kandydat nie udziela żadnej odpowiedzi — odsyła do dokumentacji. Brak jakiejkolwiek definicji == ani equals()."
+    "humanNote": "Candidate gives no answer — defers to documentation. No definition of == or equals() provided."
   },
   {
     "id": 34,
     "topic": "Core Java",
-    "question": "Co to jest Stream API?",
-    "candidateAnswer": "Używałem Stream API w kilku projektach i sprawdza się bardzo dobrze przy pracy z kolekcjami. Ciężko mi to dokładnie wytłumaczyć słowami, ale w praktyce wiem jak tego używać.",
+    "question": "What is the Stream API?",
+    "candidateAnswer": "I have used the Stream API in several projects and it works very well for processing collections. It is hard for me to explain exactly in words, but in practice I know how to use it.",
     "label": "evasive",
-    "humanNote": "Klasyczna ucieczka przez doświadczenie praktyczne. Kandydat przyznaje wprost że nie potrafi wyjaśnić mechanizmu. Zero treści technicznej."
+    "humanNote": "Classic escape through practical experience. Candidate explicitly admits they cannot explain the mechanism. Zero technical content."
   },
   {
     "id": 35,
     "topic": "Core Java",
-    "question": "Co oznacza słowo kluczowe synchronized?",
-    "candidateAnswer": "synchronized stosuje się przy wielowątkowości, kiedy mamy wiele wątków. Zapewnia że kod działa poprawnie w takich sytuacjach.",
+    "question": "What does the synchronized keyword mean?",
+    "candidateAnswer": "synchronized is used in multithreading when we have multiple threads. It ensures that the code works correctly in such situations.",
     "label": "evasive",
-    "humanNote": "Kandydat identyfikuje domenę (wielowątkowość) ale nie wyjaśnia mechanizmu. Brak: blokady, monitora, race condition, 'jeden wątek na raz'."
+    "humanNote": "Candidate identifies the domain (multithreading) but does not explain the mechanism. Missing: locking, monitor, race condition, 'one thread at a time'."
   },
   {
     "id": 36,
     "topic": "Core Java",
-    "question": "Co to jest Optional i jaki problem rozwiązuje?",
-    "candidateAnswer": "Optional to klasa która pomaga przy nullach. Opakowujesz w nią obiekt i potem możesz na nim operować.",
+    "question": "What is Optional and what problem does it solve?",
+    "candidateAnswer": "Optional is a class that helps with nulls. You wrap an object in it and then you can operate on it.",
     "label": "evasive",
-    "humanNote": "Kandydat dotknął tematu ale nie wyjaśnił problemu (NPE) ani mechanizmu wymuszania obsługi pustości. 'Opakowujesz i operujesz' to za mało."
+    "humanNote": "Candidate touched the topic but did not explain the problem (NPE) or the mechanism that forces handling of emptiness. 'Wrap and operate' is not enough."
   },
   {
     "id": 37,
     "topic": "OOP",
-    "question": "Na czym polega zasada Single Responsibility Principle?",
-    "candidateAnswer": "SRP oznacza że klasa powinna robić jedną rzecz. Na przykład klasa UserService powinna zajmować się użytkownikami, a nie czymś innym.",
+    "question": "What is the Single Responsibility Principle?",
+    "candidateAnswer": "SRP means that a class should do one thing. For example, a UserService class should deal with users and not with something else.",
     "label": "evasive",
-    "humanNote": "Przykład jest tautologią — 'UserService zajmuje się userami' nic nie mówi. Brak 'jednego powodu do zmiany', brak konkretnego counter-przykładu naruszenia SRP."
+    "humanNote": "Example is a tautology — 'UserService deals with users' says nothing. Missing 'one reason to change', no concrete counter-example of an SRP violation."
   },
   {
     "id": 38,
     "topic": "Core Java",
-    "question": "Jaka jest różnica między operacjami map() a flatMap() w Stream API?",
-    "candidateAnswer": "Używałem obu w projektach i wiem kiedy stosować jedną a kiedy drugą, ale trudno mi to precyzyjnie wytłumaczyć. W praktyce flatMap() stosuje się przy bardziej skomplikowanych przypadkach.",
+    "question": "What is the difference between map() and flatMap() in the Stream API?",
+    "candidateAnswer": "I have used both in projects and I know when to use one versus the other, but it is hard for me to explain it precisely. In practice flatMap() is used for more complex cases.",
     "label": "evasive",
-    "humanNote": "Kandydat przyznaje że nie potrafi wyjaśnić. 'Bardziej skomplikowane przypadki' to nieuchwytne kryterium bez treści. Zero definicji."
+    "humanNote": "Candidate admits they cannot explain it. 'More complex cases' is an elusive criterion with no content. Zero definitions."
   },
   {
     "id": 39,
     "topic": "Core Java",
-    "question": "Co to jest String Pool w Javie?",
-    "candidateAnswer": "String Pool to mechanizm optymalizacyjny w Javie. Chodzi o to że JVM jakoś przechowuje Stringi żeby oszczędzać pamięć. Dokładne szczegóły zależą od implementacji JVM.",
+    "question": "What is the String Pool in Java?",
+    "candidateAnswer": "The String Pool is an optimisation mechanism in Java. The idea is that the JVM somehow stores Strings to save memory. The exact details depend on the JVM implementation.",
     "label": "evasive",
-    "humanNote": "Kandydat wie że istnieje coś takiego jak optymalizacja Stringów ale celowo rozmywa odpowiedź słowem 'jakoś'. Odesłanie do 'implementacji JVM' to ucieczka od konkretów."
+    "humanNote": "Candidate knows that some String optimisation exists but deliberately blurs the answer with 'somehow'. Deferring to 'JVM implementation' is an escape from specifics."
   },
   {
     "id": 40,
     "topic": "OOP",
-    "question": "Czy można utworzyć instancję klasy abstrakcyjnej?",
-    "candidateAnswer": "To zależy od tego co rozumiemy przez instancję. W pewnych przypadkach możliwe jest uzyskanie działającego obiektu na bazie klasy abstrakcyjnej, chociaż bezpośrednie użycie new może nie być możliwe.",
+    "question": "Can you instantiate an abstract class?",
+    "candidateAnswer": "It depends on what we mean by instantiation. In certain cases it is possible to obtain a working object based on an abstract class, although direct use of new may not be possible.",
     "label": "evasive",
-    "humanNote": "Kandydat celowo ucieka w niejednoznaczność zamiast powiedzieć wprost: nie, nie można. Fraza 'w pewnych przypadkach' sugeruje wyjątki których nie ma — to dezorientuje zamiast odpowiadać."
+    "humanNote": "Candidate deliberately escapes into ambiguity instead of saying plainly: no, you cannot. The phrase 'in certain cases' implies exceptions that do not exist — it misleads rather than answers."
   }
 ]
