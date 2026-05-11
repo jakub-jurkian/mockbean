@@ -5,6 +5,8 @@ import com.example.demo.domain.EvaluationLog;
 import com.example.demo.domain.EvaluationRequest;
 import com.example.demo.domain.EvaluationResponse;
 import com.example.demo.repository.EvaluationLogRepository;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.embedding.EmbeddingModel;
@@ -24,6 +26,7 @@ public class EvaluationService {
     private final EmbeddingModel embeddingModel;
     private final TechnicalInterviewer technicalInterviewer;
     private final EvaluationLogRepository logRepository;
+    private final Gson gson = new Gson();
 
     public EvaluationResponse evaluateCandidate(EvaluationRequest request) {
         log.info("Starting evaluation process for question: {}", request.question());
@@ -44,16 +47,50 @@ public class EvaluationService {
 
         // Send everything to the LLM Judge
         log.info("Sending prompt to the LLM Judge...");
-        EvaluationResponse response = technicalInterviewer.evaluate(
+        String rawResponse = technicalInterviewer.evaluate(
                 request.question(),
                 idealAnswer,
                 request.userAnswer()
         );
 
+        log.debug("Raw LLM response: {}", rawResponse);
+        EvaluationResponse response = parseResponse(rawResponse);
+
         saveEvaluationLog(request, response);
 
         log.info("Evaluation completed successfully. Final score: {}", response.score());
         return response;
+    }
+
+    /**
+     * Strips markdown code fences (```json ... ```) and any leading/trailing text
+     * that Claude or other models sometimes add around the JSON object.
+     */
+    private EvaluationResponse parseResponse(String raw) {
+        String cleaned = raw.strip();
+
+        // Remove ```json ... ``` or ``` ... ``` wrappers
+        if (cleaned.startsWith("```")) {
+            int firstNewline = cleaned.indexOf('\n');
+            int lastFence    = cleaned.lastIndexOf("```");
+            if (firstNewline != -1 && lastFence > firstNewline) {
+                cleaned = cleaned.substring(firstNewline + 1, lastFence).strip();
+            }
+        }
+
+        // Extract the JSON object: find first '{' and last '}'
+        int start = cleaned.indexOf('{');
+        int end   = cleaned.lastIndexOf('}');
+        if (start != -1 && end != -1 && end > start) {
+            cleaned = cleaned.substring(start, end + 1);
+        }
+
+        try {
+            return gson.fromJson(cleaned, EvaluationResponse.class);
+        } catch (JsonSyntaxException e) {
+            log.error("Failed to parse LLM response after cleanup. Raw was: {}", raw);
+            throw e;
+        }
     }
 
     private void saveEvaluationLog(EvaluationRequest request, EvaluationResponse response) {

@@ -1,6 +1,5 @@
 package com.example.demo.ai;
 
-import com.example.demo.domain.EvaluationResponse;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
@@ -14,7 +13,15 @@ public interface TechnicalInterviewer {
             SCORING RULES:
             1. Be strict. If the candidate's answer is vague or contains no concrete technical details, assign a very low score (e.g. 0.1 or 0.2).
             2. Ignore spelling mistakes — focus solely on technical correctness and depth.
-            3. Return the result as a JSON object matching the required structure.
+            3. You MUST respond with ONLY a valid JSON object — no markdown, no code fences, no explanation before or after.
+
+            The JSON object must have exactly these four fields:
+            {
+              "score": <number between 0.0 and 1.0>,
+              "strengths": [<string>, ...],
+              "missedConcepts": [<string>, ...],
+              "feedback": "<string>"
+            }
             """)
     @UserMessage("""
             Evaluate the candidate's answer.
@@ -24,7 +31,7 @@ public interface TechnicalInterviewer {
 
             Candidate's answer: {{user_answer}}
             """)
-    EvaluationResponse evaluate(
+    String evaluate(
             @V("question") String question,
             @V("ideal_answer") String idealAnswer,
             @V("user_answer") String userAnswer
