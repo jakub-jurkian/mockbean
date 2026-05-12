@@ -7,10 +7,12 @@ import dev.langchain4j.service.AiServices;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.pgvector.PgVectorEmbeddingStore;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+@Slf4j
 @Configuration
 @RequiredArgsConstructor
 @EnableConfigurationProperties(PgVectorProperties.class)
@@ -33,6 +35,7 @@ public class VectorStoreConfig {
 
     @Bean
     public TechnicalInterviewer technicalInterviewer(ChatLanguageModel chatLanguageModel) {
+        log.info(">>> LLM Judge wired to: {}", chatLanguageModel.getClass().getSimpleName());
         return AiServices.builder(TechnicalInterviewer.class)
                 .chatLanguageModel(chatLanguageModel)
                 .build();

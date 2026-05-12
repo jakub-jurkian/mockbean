@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Profile;
  * are on the classpath.
  */
 @Configuration
-@Profile("!gpt4omini & !claude-haiku & !gemini-flash")
+@Profile("!gpt4omini & !claude-sonnet-4-6 & !gemini-flash")
 public class OllamaModelPrimaryConfig {
 
     @Bean
