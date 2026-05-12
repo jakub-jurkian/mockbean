@@ -1,7 +1,7 @@
 langchain4j:
   anthropic:
     chat-model:
-      api-key: ${ANTHROPIC_API_KEY}
+      api-key: ${ANTHROPIC_API_KEY:missing-key}
       model-name: claude-sonnet-4-6
       temperature: 0.0
       max-tokens: 1024
