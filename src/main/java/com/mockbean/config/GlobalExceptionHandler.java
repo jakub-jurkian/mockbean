@@ -1,6 +1,6 @@
-package com.example.demo.config;
+package com.mockbean.config;
 
-import com.example.demo.domain.ErrorResponse;
+import com.mockbean.domain.ErrorResponse;
 import com.google.gson.JsonSyntaxException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;

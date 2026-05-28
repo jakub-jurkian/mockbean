@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.mockbean.config;
 
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Profile;
  * are on the classpath.
  */
 @Configuration
-@Profile("!gpt4omini & !claude-sonnet-4-6 & !gemini-flash")
+@Profile("!claude-sonnet-4-6 & !gemini-flash")
 public class OllamaModelPrimaryConfig {
 
     @Bean

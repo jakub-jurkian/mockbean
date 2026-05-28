@@ -8,11 +8,11 @@
         <version>3.5.13</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>demo</artifactId>
+    <groupId>com.mockbean</groupId>
+    <artifactId>mockbean</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name/>
-    <description/>
+    <name>mockbean</name>
+    <description>LLM-as-a-Judge for Java technical interview evaluation</description>
     <url/>
     <licenses>
         <license/>

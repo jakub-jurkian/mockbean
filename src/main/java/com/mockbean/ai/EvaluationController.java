@@ -1,8 +1,8 @@
-package com.example.demo.ai;
+package com.mockbean.ai;
 
-import com.example.demo.domain.EvaluationRequest;
-import com.example.demo.domain.EvaluationResponse;
-import com.example.demo.service.EvaluationService;
+import com.mockbean.domain.EvaluationRequest;
+import com.mockbean.domain.EvaluationResponse;
+import com.mockbean.service.EvaluationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

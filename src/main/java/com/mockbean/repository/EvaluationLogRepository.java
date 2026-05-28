@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package com.mockbean.repository;
 
-import com.example.demo.domain.EvaluationLog;
+import com.mockbean.domain.EvaluationLog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

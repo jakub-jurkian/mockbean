@@ -1,10 +1,10 @@
-package com.example.demo.service;
+package com.mockbean.service;
 
-import com.example.demo.ai.TechnicalInterviewer;
-import com.example.demo.domain.EvaluationLog;
-import com.example.demo.domain.EvaluationRequest;
-import com.example.demo.domain.EvaluationResponse;
-import com.example.demo.repository.EvaluationLogRepository;
+import com.mockbean.ai.TechnicalInterviewer;
+import com.mockbean.domain.EvaluationLog;
+import com.mockbean.domain.EvaluationRequest;
+import com.mockbean.domain.EvaluationResponse;
+import com.mockbean.repository.EvaluationLogRepository;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import dev.langchain4j.data.embedding.Embedding;
@@ -31,27 +31,37 @@ public class EvaluationService {
     public EvaluationResponse evaluateCandidate(EvaluationRequest request) {
         log.info("Starting evaluation process for question: {}", request.question());
 
-        // Convert the question into a mathematical vector to search the database
-        Embedding queryEmbedding = embeddingModel.embed(request.question()).content();
+        String rawResponse;
 
-        // Perform Similarity Search in pgvector (fetch Top 1 result)
-        List<EmbeddingMatch<TextSegment>> matches = embeddingStore.findRelevant(queryEmbedding, 1);
-
-        String idealAnswer = "No reference pattern found in the database.";
-        if (!matches.isEmpty()) {
-            idealAnswer = matches.getFirst().embedded().text();
-            log.info("Found matching reference context with score: {}", matches.getFirst().score());
+        if (request.isPurePrompt()) {
+            // Pure Prompt mode — skip vector retrieval entirely
+            log.info("Mode: PURE PROMPT — skipping RAG retrieval");
+            rawResponse = technicalInterviewer.evaluatePure(
+                    request.question(),
+                    request.userAnswer()
+            );
         } else {
-            log.warn("Warning: Proceeding with evaluation without reference context.");
+            // RAG mode — retrieve reference answer from pgvector
+            log.info("Mode: RAG — retrieving reference answer from vector store");
+            Embedding queryEmbedding = embeddingModel.embed(request.question()).content();
+            List<EmbeddingMatch<TextSegment>> matches = embeddingStore.findRelevant(queryEmbedding, 1);
+
+            String idealAnswer = "No reference pattern found in the database.";
+            if (!matches.isEmpty()) {
+                idealAnswer = matches.getFirst().embedded().text();
+                log.info("Found matching reference context with score: {}", matches.getFirst().score());
+            } else {
+                log.warn("Warning: Proceeding without reference context.");
+            }
+
+            rawResponse = technicalInterviewer.evaluate(
+                    request.question(),
+                    idealAnswer,
+                    request.userAnswer()
+            );
         }
 
-        // Send everything to the LLM Judge
         log.info("Sending prompt to the LLM Judge...");
-        String rawResponse = technicalInterviewer.evaluate(
-                request.question(),
-                idealAnswer,
-                request.userAnswer()
-        );
 
         log.debug("Raw LLM response: {}", rawResponse);
         EvaluationResponse response = parseResponse(rawResponse);

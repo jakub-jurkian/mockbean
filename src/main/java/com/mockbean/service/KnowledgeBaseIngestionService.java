@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.mockbean.service;
 
 import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
 import dev.langchain4j.data.document.parser.TextDocumentParser;

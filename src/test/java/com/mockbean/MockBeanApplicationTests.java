@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.mockbean;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Import;
 
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest
-class DemoApplicationTests {
+class MockBeanApplicationTests {
 
 	@Test
 	void contextLoads() {

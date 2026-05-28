@@ -1,6 +1,6 @@
-package com.example.demo.config;
+package com.mockbean.config;
 
-import com.example.demo.ai.TechnicalInterviewer;
+import com.mockbean.ai.TechnicalInterviewer;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.service.AiServices;

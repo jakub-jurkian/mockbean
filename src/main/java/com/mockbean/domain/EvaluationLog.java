@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.mockbean.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
