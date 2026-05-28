@@ -1,5 +1,4 @@
-HELP.md
-GUIDE.md
+projekty2025-26-letni.pdf
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
