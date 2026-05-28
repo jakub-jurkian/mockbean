@@ -1,0 +1,7 @@
+experiment,accuracy,ci_lower,ci_upper,ci_half,n_cases,n_bootstrap
+claude · RAG,0.825,0.7,0.925,0.1125,40,10000
+claude · Pure,0.925,0.825,1.0,0.0875,40,10000
+gemini · RAG,0.8,0.675,0.925,0.125,40,10000
+gemini · Pure,0.875,0.775,0.975,0.1,40,10000
+llama · RAG,0.5,0.35,0.65,0.15,40,10000
+llama · Pure,0.575,0.425,0.725,0.15,40,10000

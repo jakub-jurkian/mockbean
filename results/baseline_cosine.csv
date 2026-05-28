@@ -1,0 +1,41 @@
+test_id,topic,human_label,expected_bucket,retrieved_kb_q,question_sim,answer_sim,predicted_bucket,match
+1,Core Java,correct,correct,What is the difference between the == operator and the equal,1.0,0.7725,correct,True
+2,Core Java,correct,correct,What is the Optional class and what problem does it solve?,0.9245,0.7493,correct,True
+3,Core Java,correct,correct,What does the synchronized keyword mean?,1.0,0.4881,partial,False
+4,Core Java,correct,correct,What is the Garbage Collector and how does it work?,1.0,0.6342,partial,False
+5,Core Java,correct,correct,What is a functional interface?,1.0,0.657,correct,True
+6,Core Java,correct,correct,What are the access modifiers in Java and how do they differ,1.0,0.9825,correct,True
+7,OOP,correct,correct,What is the Open/Closed Principle (OCP) from SOLID?,0.7834,0.6122,partial,False
+8,OOP,correct,correct,What is abstraction in object-oriented programming?,1.0,0.6526,correct,True
+9,Core Java,partial,partial,"What is the difference between String, StringBuilder, and St",1.0,0.5657,partial,True
+10,Core Java,partial,partial,What is the Stream API?,1.0,0.4098,partial,True
+11,OOP,partial,partial,What is the Single Responsibility Principle (SRP) from SOLID,0.7834,0.5401,partial,True
+12,Core Java,partial,partial,What is the difference between an Error and an Exception?,1.0,0.4011,partial,True
+13,Core Java,partial,partial,What is the difference between map() and flatMap() in the St,1.0,0.6465,partial,True
+14,Core Java,partial,partial,What does the synchronized keyword mean?,1.0,0.5095,partial,True
+15,OOP,partial,partial,What is encapsulation?,1.0,0.5968,partial,True
+16,Core Java,partial,partial,What are lambda expressions introduced in Java 8?,1.0,0.5013,partial,True
+17,Core Java,wrong,low,What is the String Pool in Java?,1.0,0.5182,partial,False
+18,Core Java,wrong,low,What is varargs in Java?,1.0,0.3788,partial,False
+19,OOP,wrong,low,Can you instantiate an abstract class?,1.0,0.316,partial,False
+20,OOP,wrong,low,What is the difference between aggregation and composition?,1.0,0.6311,partial,False
+21,OOP,wrong,low,What is the Open/Closed Principle (OCP) from SOLID?,0.7834,0.4587,partial,False
+22,Core Java,wrong,low,What is a functional interface?,1.0,0.4589,partial,False
+23,Core Java,wrong,low,What is the Garbage Collector and how does it work?,1.0,0.32,partial,False
+24,Core Java,wrong,low,What is the difference between map() and flatMap() in the St,1.0,0.6773,correct,False
+25,Core Java,waffle,low,What is the Garbage Collector and how does it work?,1.0,0.3811,partial,False
+26,OOP,waffle,low,What is encapsulation?,1.0,0.2005,low,True
+27,Core Java,waffle,low,What are lambda expressions introduced in Java 8?,0.7706,0.267,low,True
+28,OOP,waffle,low,What is the Open/Closed Principle (OCP) from SOLID?,0.7834,0.2521,low,True
+29,OOP,waffle,low,What is abstraction in object-oriented programming?,1.0,0.3558,partial,False
+30,Core Java,waffle,low,What is the difference between an Error and an Exception?,1.0,0.293,low,True
+31,Core Java,waffle,low,What are the access modifiers in Java and how do they differ,1.0,0.0769,low,True
+32,OOP,waffle,low,What is the difference between aggregation and composition?,1.0,0.1032,low,True
+33,Core Java,evasive,low,What is the difference between the == operator and the equal,1.0,0.1432,low,True
+34,Core Java,evasive,low,What is the Stream API?,1.0,0.2566,low,True
+35,Core Java,evasive,low,What does the synchronized keyword mean?,1.0,0.2707,low,True
+36,Core Java,evasive,low,What is the Optional class and what problem does it solve?,0.9245,0.0881,low,True
+37,OOP,evasive,low,What is the Single Responsibility Principle (SRP) from SOLID,0.7834,0.3533,partial,False
+38,Core Java,evasive,low,What is the difference between map() and flatMap() in the St,1.0,0.1407,low,True
+39,Core Java,evasive,low,What is the String Pool in Java?,1.0,0.4069,partial,False
+40,OOP,evasive,low,Can you instantiate an abstract class?,1.0,0.3478,partial,False
