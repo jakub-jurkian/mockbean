@@ -6,9 +6,14 @@ Replays the adversarial test set against the MockBean API and records results.
 
 Usage:
     python scripts/run_evaluation.py
-    python scripts/run_evaluation.py --model gpt-4o-mini
+    python scripts/run_evaluation.py --model gemini-flash --mode rag
+    python scripts/run_evaluation.py --model gemini-flash --mode pure
     python scripts/run_evaluation.py --model llama3.1 --experiment rag_top1
     python scripts/run_evaluation.py --help
+
+Modes:
+    rag   (default) — retrieves a reference answer from pgvector before judging
+    pure            — skips retrieval; LLM judges from its own knowledge only
 """
 
 import json
@@ -75,12 +80,13 @@ def load_test_set(path: Path) -> list:
 
 # ── Core loop ─────────────────────────────────────────────────────────────────
 
-def run_evaluation(test_set: list, experiment_id: str, model: str) -> list:
+def run_evaluation(test_set: list, experiment_id: str, model: str, mode: str = "rag") -> list:
     results = []
 
     print(f"\n{'=' * 62}")
     print(f"  Experiment : {experiment_id}")
     print(f"  Model      : {model}")
+    print(f"  Mode       : {mode.upper()}")
     print(f"  Test cases : {len(test_set)}")
     print(f"{'=' * 62}")
     print(f"  {'#':<4} {'id':<4} {'label':<10} {'score':<7} {'latency':>8}  match")
@@ -90,6 +96,7 @@ def run_evaluation(test_set: list, experiment_id: str, model: str) -> list:
         payload = {
             "question":   case["question"],
             "userAnswer": case["candidateAnswer"],
+            "mode":       mode,
         }
 
         start = time.monotonic()
@@ -123,6 +130,7 @@ def run_evaluation(test_set: list, experiment_id: str, model: str) -> list:
         results.append({
             "experiment_id":   experiment_id,
             "model":           model,
+            "mode":            mode,
             "test_id":         case["id"],
             "topic":           case["topic"],
             "question":        case["question"],
@@ -192,7 +200,7 @@ def save_results(results: list, experiment_id: str) -> Path:
     out = RESULTS_DIR / f"{experiment_id}.csv"
 
     fields = [
-        "experiment_id", "model", "test_id", "topic", "question",
+        "experiment_id", "model", "mode", "test_id", "topic", "question",
         "candidate_answer", "human_label", "expected_bucket",
         "llm_score", "predicted_bucket", "match",
         "feedback", "strengths", "missed_concepts",
@@ -219,12 +227,16 @@ def main():
         help="Experiment ID prefix (default: <model>__<timestamp>)"
     )
     parser.add_argument(
+        "--mode", default="rag", choices=["rag", "pure"],
+        help="Evaluation mode: 'rag' (default) uses vector retrieval; 'pure' skips it"
+    )
+    parser.add_argument(
         "--test-set", default=str(TEST_SET_PATH),
         help=f"Path to test set JSON (default: {TEST_SET_PATH})"
     )
     args = parser.parse_args()
 
-    experiment_id = args.experiment or f"{args.model}__{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+    experiment_id = args.experiment or f"{args.model}_{args.mode}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
 
     test_set_path = Path(args.test_set)
     if not test_set_path.exists():
@@ -234,7 +246,7 @@ def main():
     check_api_health()
     test_set = load_test_set(test_set_path)
 
-    results = run_evaluation(test_set, experiment_id, args.model)
+    results = run_evaluation(test_set, experiment_id, args.model, args.mode)
     print_summary(results)
     save_results(results, experiment_id)
 
