@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<p:notes xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+  <p:cSld>
+    <p:spTree>
+      <p:nvGrpSpPr>
+        <p:cNvPr id="1" name=""/>
+        <p:cNvGrpSpPr/>
+        <p:nvPr/>
+      </p:nvGrpSpPr>
+      <p:grpSpPr>
+        <a:xfrm>
+          <a:off x="0" y="0"/>
+          <a:ext cx="0" cy="0"/>
+          <a:chOff x="0" y="0"/>
+          <a:chExt cx="0" cy="0"/>
+        </a:xfrm>
+      </p:grpSpPr>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="2" name="Slide Image Placeholder 1"/>
+          <p:cNvSpPr>
+            <a:spLocks noGrp="1" noRot="1" noChangeAspect="1"/>
+          </p:cNvSpPr>
+          <p:nvPr>
+            <p:ph type="sldImg" idx="2"/>
+          </p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+      </p:sp>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="3" name="Notes Placeholder 2"/>
+          <p:cNvSpPr>
+            <a:spLocks noGrp="1"/>
+          </p:cNvSpPr>
+          <p:nvPr>
+            <p:ph type="body" sz="quarter" idx="3"/>
+          </p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+        <p:txBody>
+          <a:bodyPr/>
+          <a:lstStyle/>
+          <a:p>
+            <a:r>
+              <a:t>[75s — rygor metodologiczny]</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Krótko o dwóch dodatkowych analizach, które wzmacniają wiarygodność wniosków.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Po lewej heatmap accuracy per etykieta. Widać, że klasa correct jest rozpoznawana bezbłędnie przez wszystkie modele — to łatwy przypadek. Najwięcej zamieszania jest między partial a low. I co istotne, Llama w trybie RAG ma 12% trafności na klasie wrong — czyli prawie NIGDY nie wykrywa błędnej odpowiedzi. To podręcznikowy leniency bias.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Po prawej bootstrap 95% CI. Test set ma tylko 40 przypadków, więc szerokość przedziałów to od ±9 do ±15 punktów procentowych. Mimo to: dolna granica CI dla Claude'a w trybie Pure to 82,5% — i jest WYŻSZA niż górna granica CI dla Llamy w trybie Pure, czyli 72,5%. Przedziały się nie nakładają. To znaczy, że różnica między tymi dwoma modelami jest statystycznie istotna nawet przy tak małej próbie.</a:t>
+            </a:r>
+          </a:p>
+        </p:txBody>
+      </p:sp>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="4" name="Slide Number Placeholder 3"/>
+          <p:cNvSpPr>
+            <a:spLocks noGrp="1"/>
+          </p:cNvSpPr>
+          <p:nvPr>
+            <p:ph type="sldNum" sz="quarter" idx="5"/>
+          </p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+      </p:sp>
+    </p:spTree>
+  </p:cSld>
+  <p:clrMapOvr>
+    <a:masterClrMapping/>
+  </p:clrMapOvr>
+</p:notes>

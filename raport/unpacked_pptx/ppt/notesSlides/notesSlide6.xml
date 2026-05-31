@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<p:notes xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+  <p:cSld>
+    <p:spTree>
+      <p:nvGrpSpPr>
+        <p:cNvPr id="1" name=""/>
+        <p:cNvGrpSpPr/>
+        <p:nvPr/>
+      </p:nvGrpSpPr>
+      <p:grpSpPr>
+        <a:xfrm>
+          <a:off x="0" y="0"/>
+          <a:ext cx="0" cy="0"/>
+          <a:chOff x="0" y="0"/>
+          <a:chExt cx="0" cy="0"/>
+        </a:xfrm>
+      </p:grpSpPr>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="2" name="Slide Image Placeholder 1"/>
+          <p:cNvSpPr>
+            <a:spLocks noGrp="1" noRot="1" noChangeAspect="1"/>
+          </p:cNvSpPr>
+          <p:nvPr>
+            <p:ph type="sldImg" idx="2"/>
+          </p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+      </p:sp>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="3" name="Notes Placeholder 2"/>
+          <p:cNvSpPr>
+            <a:spLocks noGrp="1"/>
+          </p:cNvSpPr>
+          <p:nvPr>
+            <p:ph type="body" sz="quarter" idx="3"/>
+          </p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+        <p:txBody>
+          <a:bodyPr/>
+          <a:lstStyle/>
+          <a:p>
+            <a:r>
+              <a:t>[90s — kluczowe odkrycie]</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>To jest klucz całej pracy.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Mainstreamowe założenie w literaturze brzmi: dodaj retrieval, dostaniesz lepszą jakość. RAG jest dziś technologią domyślną przy każdym przypadku użycia LLM-a. A u mnie wyszło, że dla wszystkich trzech modeli — niezależnie czy to 8B model lokalny, czy frontier model — tryb Pure Prompt jest LEPSZY niż RAG. Claude: plus 10 punktów procentowych. Gemini i Llama: plus 7 i pół.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Moja hipoteza jest taka. W RAG-u wyciągam wzorcową odpowiedź z bazy metodą top-1 similarity search. Jeśli pytanie i wzorzec nie pokrywają się idealnie — a przy małej bazie 50 dokumentów się nie pokrywają — to sędzia dostaje mylący punkt odniesienia. Zaczyna nagradzać odpowiedzi za to, że BRZMIĄ jak wzorzec, a nie za to, że są MERYTORYCZNIE poprawne. Nazywam to &quot;partial-match bias&quot;.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>W trybie Pure tej pułapki nie ma. Sędzia ocenia tylko na podstawie swojej wiedzy. A że Core Java to dziedzina pokryta w pre-trainingu chyba lepiej niż jakakolwiek inna w IT — modele radzą sobie z tym świetnie.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>To wynik specyficzny dla mojej domeny. W niszowych albo nowych dziedzinach RAG dalej jest niezastąpiony. Ale w klasycznych zagadnieniach IT — warto zacząć od baseline'u Pure.</a:t>
+            </a:r>
+          </a:p>
+        </p:txBody>
+      </p:sp>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="4" name="Slide Number Placeholder 3"/>
+          <p:cNvSpPr>
+            <a:spLocks noGrp="1"/>
+          </p:cNvSpPr>
+          <p:nvPr>
+            <p:ph type="sldNum" sz="quarter" idx="5"/>
+          </p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+      </p:sp>
+    </p:spTree>
+  </p:cSld>
+  <p:clrMapOvr>
+    <a:masterClrMapping/>
+  </p:clrMapOvr>
+</p:notes>

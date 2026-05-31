@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<p:notes xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+  <p:cSld>
+    <p:spTree>
+      <p:nvGrpSpPr>
+        <p:cNvPr id="1" name=""/>
+        <p:cNvGrpSpPr/>
+        <p:nvPr/>
+      </p:nvGrpSpPr>
+      <p:grpSpPr>
+        <a:xfrm>
+          <a:off x="0" y="0"/>
+          <a:ext cx="0" cy="0"/>
+          <a:chOff x="0" y="0"/>
+          <a:chExt cx="0" cy="0"/>
+        </a:xfrm>
+      </p:grpSpPr>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="2" name="Slide Image Placeholder 1"/>
+          <p:cNvSpPr>
+            <a:spLocks noGrp="1" noRot="1" noChangeAspect="1"/>
+          </p:cNvSpPr>
+          <p:nvPr>
+            <p:ph type="sldImg" idx="2"/>
+          </p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+      </p:sp>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="3" name="Notes Placeholder 2"/>
+          <p:cNvSpPr>
+            <a:spLocks noGrp="1"/>
+          </p:cNvSpPr>
+          <p:nvPr>
+            <p:ph type="body" sz="quarter" idx="3"/>
+          </p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+        <p:txBody>
+          <a:bodyPr/>
+          <a:lstStyle/>
+          <a:p>
+            <a:r>
+              <a:t>[45s — latencja i koszt]</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Z punktu widzenia wdrożenia same wyniki nie wystarczą. Po lewej Claude — najwyższa jakość, ale najwyższy koszt: 7,5 sekundy na ocenę i około 30 centów za 40 ocen.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Po prawej Llama — darmowa, ale 25 sekund na pojedynczą ocenę i tylko 57% trafności. Wniosek: w tym zastosowaniu lokalna 8B nie zastępuje API.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Na środku Gemini. Niemal porównywalna jakość do Claude'a — 85% versus 92% — przy dziesięciokrotnie niższym koszcie. To jest sweet spot Pareto: jeśli zależy mi na trafności i mam budżet poniżej dolara dziennie, Gemini wystarczy. Jeśli zależy na każdym pojedynczym procencie trafności — Claude.</a:t>
+            </a:r>
+          </a:p>
+        </p:txBody>
+      </p:sp>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="4" name="Slide Number Placeholder 3"/>
+          <p:cNvSpPr>
+            <a:spLocks noGrp="1"/>
+          </p:cNvSpPr>
+          <p:nvPr>
+            <p:ph type="sldNum" sz="quarter" idx="5"/>
+          </p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+      </p:sp>
+    </p:spTree>
+  </p:cSld>
+  <p:clrMapOvr>
+    <a:masterClrMapping/>
+  </p:clrMapOvr>
+</p:notes>

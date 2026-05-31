@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<p:notes xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+  <p:cSld>
+    <p:spTree>
+      <p:nvGrpSpPr>
+        <p:cNvPr id="1" name=""/>
+        <p:cNvGrpSpPr/>
+        <p:nvPr/>
+      </p:nvGrpSpPr>
+      <p:grpSpPr>
+        <a:xfrm>
+          <a:off x="0" y="0"/>
+          <a:ext cx="0" cy="0"/>
+          <a:chOff x="0" y="0"/>
+          <a:chExt cx="0" cy="0"/>
+        </a:xfrm>
+      </p:grpSpPr>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="2" name="Slide Image Placeholder 1"/>
+          <p:cNvSpPr>
+            <a:spLocks noGrp="1" noRot="1" noChangeAspect="1"/>
+          </p:cNvSpPr>
+          <p:nvPr>
+            <p:ph type="sldImg" idx="2"/>
+          </p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+      </p:sp>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="3" name="Notes Placeholder 2"/>
+          <p:cNvSpPr>
+            <a:spLocks noGrp="1"/>
+          </p:cNvSpPr>
+          <p:nvPr>
+            <p:ph type="body" sz="quarter" idx="3"/>
+          </p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+        <p:txBody>
+          <a:bodyPr/>
+          <a:lstStyle/>
+          <a:p>
+            <a:r>
+              <a:t>[75s — zamknięcie]</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Trzy uczciwe ograniczenia, które sam podkreślam w raporcie.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Po pierwsze: n=40 to mało. Stąd bootstrap CI i ostrożne formułowanie wniosków.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Po drugie: testowałem tylko top-1 retrieval. Możliwe, że top-3 zmieniłby obraz partial-match biasu — to naturalny kierunek dalszej pracy.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Po trzecie: etykiety wystawiałem sam. Pełna walidacja wymagałaby porównania z panelem rekruterów-ludzi — to też przyszła praca.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Cztery wnioski końcowe.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Pierwszy: modele komercyjne są realnie zdatne do roli sędziego technicznego — 92% i 85% trafności to wyniki, które stawiają je w pozycji wiarygodnego asystenta rekrutera, nie zastępcy, ale asystenta.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Drugi: i to chyba najbardziej kontr-intuicyjny — RAG nie zawsze pomaga. W dziedzinach mocno pokrytych pre-trainingiem warto najpierw zmierzyć baseline Pure i dopiero potem dokładać retrieval.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Trzeci: lokalna Llama 8B jako autonomiczny sędzia odpada. 57% to za mało.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Czwarty: jeśli wybieramy model do ewaluacji, deterministyczność jest twardym wymaganiem — Claude jest tu w pełni powtarzalny, Gemini niestety nie.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Dziękuję. Cały raport zostawiam w pliku LaTeX, kod jest na repozytorium. Chętnie odpowiem na pytania.</a:t>
+            </a:r>
+          </a:p>
+        </p:txBody>
+      </p:sp>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="4" name="Slide Number Placeholder 3"/>
+          <p:cNvSpPr>
+            <a:spLocks noGrp="1"/>
+          </p:cNvSpPr>
+          <p:nvPr>
+            <p:ph type="sldNum" sz="quarter" idx="5"/>
+          </p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+      </p:sp>
+    </p:spTree>
+  </p:cSld>
+  <p:clrMapOvr>
+    <a:masterClrMapping/>
+  </p:clrMapOvr>
+</p:notes>

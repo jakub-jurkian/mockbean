@@ -83,7 +83,7 @@
     \begin{center}
         \vspace*{1cm}
         {\Large\bfseries Uniwersytet Gdański\\
-        Instytut Informatyki\\[0.3cm]}
+        [0.3cm]}
         {\normalsize Inteligencja Obliczeniowa — rok akademicki 2025/2026\\[2cm]}
 
         \rule{\linewidth}{0.5mm}\\[0.4cm]
@@ -98,8 +98,6 @@
         \begin{tabular}{ll}
             \textbf{Autor:}          & Jakub Jurkian \\[0.3cm]
             \textbf{Numer indeksu:}  & 300806 \\[0.3cm]
-            \textbf{Prowadzący:}     & dr Grzegorz Madejski \\[0.3cm]
-            \textbf{Data:}           & \today \\
         \end{tabular}
     \end{center}
 
@@ -209,7 +207,8 @@ System MockBean został zbudowany w oparciu o następujące technologie:
     \item \textbf{LangChain4j 0.29.1} — integracja z modelami językowymi
     \item \textbf{PostgreSQL + pgvector} — baza wektorowa do przechowywania embeddingów
     \item \textbf{Ollama} — lokalne uruchamianie modelu open-source
-    \item \textbf{Python} — skrypt ewaluacyjny do automatycznego testowania
+    \item \textbf{Springdoc OpenAPI / Swagger UI} — interaktywna dokumentacja i ręczne testowanie endpointu
+    \item \textbf{Python} — skrypty ewaluacyjne i analityczne (\texttt{run\_evaluation.py}, \texttt{bootstrap\_analysis.py}, \texttt{baseline\_cosine.py})
 \end{itemize}
 
 \subsection{Przepływ danych}
@@ -372,9 +371,9 @@ modelu i trybu ewaluacji.
 \label{sec:baseline}
 
 Aby umieścić wyniki modeli językowych na tle klasycznej techniki analizy tekstu,
-zaimplementowano w czystym Pythonie baseline oparty na reprezentacji
-\textit{bag of words} z wagami TF-IDF oraz miarą cosine similarity
-\cite{karpukhin2020dpr}. Pipeline replikuje strukturę trybu RAG modeli LLM,
+zaimplementowano w czystym Pythonie baseline oparty na klasycznej reprezentacji
+\textit{bag of words} z wagami TF-IDF oraz miarą cosine similarity.
+Pipeline replikuje strukturę trybu RAG modeli LLM,
 zapewniając porównywalność:
 
 \begin{enumerate}

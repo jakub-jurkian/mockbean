@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<p:notes xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+  <p:cSld>
+    <p:spTree>
+      <p:nvGrpSpPr>
+        <p:cNvPr id="1" name=""/>
+        <p:cNvGrpSpPr/>
+        <p:nvPr/>
+      </p:nvGrpSpPr>
+      <p:grpSpPr>
+        <a:xfrm>
+          <a:off x="0" y="0"/>
+          <a:ext cx="0" cy="0"/>
+          <a:chOff x="0" y="0"/>
+          <a:chExt cx="0" cy="0"/>
+        </a:xfrm>
+      </p:grpSpPr>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="2" name="Slide Image Placeholder 1"/>
+          <p:cNvSpPr>
+            <a:spLocks noGrp="1" noRot="1" noChangeAspect="1"/>
+          </p:cNvSpPr>
+          <p:nvPr>
+            <p:ph type="sldImg" idx="2"/>
+          </p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+      </p:sp>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="3" name="Notes Placeholder 2"/>
+          <p:cNvSpPr>
+            <a:spLocks noGrp="1"/>
+          </p:cNvSpPr>
+          <p:nvPr>
+            <p:ph type="body" sz="quarter" idx="3"/>
+          </p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+        <p:txBody>
+          <a:bodyPr/>
+          <a:lstStyle/>
+          <a:p>
+            <a:r>
+              <a:t>[60s — test set]</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Cały zbiór testowy zrobiłem ręcznie — 40 par pytanie–odpowiedź z Core Javy i OOP. Pięć etykiet po osiem przypadków każda.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Pierwsze dwie klasy są &quot;normalne&quot;: correct to pełna odpowiedź, partial — częściowa.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Trzy ostatnie — wrong, waffle i evasive — to grupa adversarialna. Wrong to merytoryczny błąd. Waffle to coś, co brzmi mądrze, używa dużo branżowego żargonu, ale jest puste. Evasive to &quot;nie wiem, ale myślę że&quot;. Te trzy klasy powinny dostać niski wynik — i tu właśnie weryfikuje się, czy model jest sędzią rygorystycznym, czy łatwowiernym.</a:t>
+            </a:r>
+          </a:p>
+          <a:p>
+            <a:endParaRPr/>
+          </a:p>
+          <a:p>
+            <a:r>
+              <a:t>Niezależnie testowałem na bazie wiedzy z 50 wzorcowych Q&amp;A, w siedmiu tematach: Core Java, OOP, Collections, Exceptions, Spring, Multithreading, Hibernate.</a:t>
+            </a:r>
+          </a:p>
+        </p:txBody>
+      </p:sp>
+      <p:sp>
+        <p:nvSpPr>
+          <p:cNvPr id="4" name="Slide Number Placeholder 3"/>
+          <p:cNvSpPr>
+            <a:spLocks noGrp="1"/>
+          </p:cNvSpPr>
+          <p:nvPr>
+            <p:ph type="sldNum" sz="quarter" idx="5"/>
+          </p:nvPr>
+        </p:nvSpPr>
+        <p:spPr/>
+      </p:sp>
+    </p:spTree>
+  </p:cSld>
+  <p:clrMapOvr>
+    <a:masterClrMapping/>
+  </p:clrMapOvr>
+</p:notes>
