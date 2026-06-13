@@ -1,4 +1,4 @@
-# MockBean — LLM-as-a-Judge for Java Technical Interviews
+# MockBean — LLM-as-a-Judge for Java Technical Interviews (full raport in raport/raport.pdf file)
 
 > **Research question:** Can a language model reliably replace a human recruiter when evaluating Java developer interview answers?
 
