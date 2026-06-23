@@ -73,9 +73,8 @@ For executing via external APIs, pass the corresponding profile and API keys as 
 2. **Caching:** Implement response caching (e.g., Redis or Caffeine) based on query hashes to limit unnecessary API requests and costs for identically phrased user answers.
 3. **Structured Error Handling:** Introduce a global `@RestControllerAdvice` to consistently format LLM timeout exceptions or embedding failures so that clients get unified HTTP error payloads.
 
-## Raport
-Raport & Presentation are available in the 'raport' folder.
+## Report
+Report & Presentation are available in the 'report' folder.
 
 ## License
-
-Academic project / MIT
+MIT
