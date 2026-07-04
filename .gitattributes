@@ -1,2 +1,7 @@
-/mvnw text eol=lf
-*.cmd text eol=crlf
+# Treat the LaTeX report as documentation, not source code, for GitHub's
+# language stats (linguist).
+raport/** linguist-documentation
+
+# Treat the evaluation/analysis scripts as generated/tooling rather than the
+# primary codebase, so Java is correctly shown as the main language.
+scripts/** linguist-vendored
