@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-@EnableConfigurationProperties(PgVectorProperties.class)
+@EnableConfigurationProperties({PgVectorProperties.class, MockBeanProperties.class})
 public class VectorStoreConfig {
 
     private final PgVectorProperties pgVectorProperties;

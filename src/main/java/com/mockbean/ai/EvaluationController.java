@@ -1,7 +1,7 @@
 package com.mockbean.ai;
 
 import com.mockbean.domain.EvaluationRequest;
-import com.mockbean.domain.EvaluationResponse;
+import com.mockbean.domain.EvaluationResult;
 import com.mockbean.service.EvaluationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,12 +24,14 @@ public class EvaluationController {
     @PostMapping
     @Operation(
             summary = "Evaluate a candidate answer",
-            description = "Embeds the question, retrieves the closest reference answer from pgvector, " +
-                          "then prompts the configured LLM to score the candidate's answer and return structured feedback."
+            description = "RAG mode (default) embeds the question and retrieves the closest question-and-answer pair " +
+                          "from pgvector; if no pair is relevant enough it falls back to Pure mode. The configured LLM " +
+                          "then scores the answer. The response includes the judge model, the mode that actually ran " +
+                          "and the retrieved reference."
     )
-    public ResponseEntity<EvaluationResponse> evaluate(@RequestBody EvaluationRequest request) {
+    public ResponseEntity<EvaluationResult> evaluate(@RequestBody EvaluationRequest request) {
         log.info("Received new POST request at /api/v1/evaluations");
-        EvaluationResponse response = evaluationService.evaluateCandidate(request);
+        EvaluationResult response = evaluationService.evaluateCandidate(request);
         return ResponseEntity.ok(response);
     }
 }

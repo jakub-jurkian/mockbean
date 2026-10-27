@@ -12,6 +12,13 @@ spring:
   flyway:
     enabled: true
     baseline-on-migrate: true
+mockbean:
+  # Overridden by each model profile, so stored evaluations record which judge produced them
+  judge-model: llama3.1
+  # Minimum pgvector relevance, (1 + cosine) / 2, for a retrieved reference. Measured on the test
+  # set: every on-topic question scored >= 0.83, off-topic questions <= 0.76.
+  rag-min-score: 0.80
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html

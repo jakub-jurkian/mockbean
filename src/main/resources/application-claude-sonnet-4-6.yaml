@@ -1,3 +1,6 @@
+mockbean:
+  judge-model: claude-sonnet-4-6
+
 langchain4j:
   anthropic:
     chat-model:
