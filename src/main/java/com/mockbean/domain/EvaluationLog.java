@@ -42,6 +42,20 @@ public class EvaluationLog {
     @Column(columnDefinition = "jsonb")
     private List<String> missedConcepts;
 
+    private String judgeModel;
+
+    private String requestedMode;
+
+    private String effectiveMode;
+
+    private Double retrievalScore;
+
+    @Column(columnDefinition = "TEXT")
+    private String retrievedReference;
+
+    @Column(columnDefinition = "TEXT")
+    private String rawResponse;
+
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;

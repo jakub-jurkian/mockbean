@@ -1,9 +1,12 @@
 package com.mockbean.service;
 
 import com.mockbean.ai.TechnicalInterviewer;
+import com.mockbean.config.MockBeanProperties;
 import com.mockbean.domain.EvaluationLog;
+import com.mockbean.domain.EvaluationMode;
 import com.mockbean.domain.EvaluationRequest;
 import com.mockbean.domain.EvaluationResponse;
+import com.mockbean.domain.EvaluationResult;
 import com.mockbean.repository.EvaluationLogRepository;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -17,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -26,50 +30,71 @@ public class EvaluationService {
     private final EmbeddingModel embeddingModel;
     private final TechnicalInterviewer technicalInterviewer;
     private final EvaluationLogRepository logRepository;
+    private final MockBeanProperties properties;
     private final Gson gson = new Gson();
 
-    public EvaluationResponse evaluateCandidate(EvaluationRequest request) {
+    public EvaluationResult evaluateCandidate(EvaluationRequest request) {
         log.info("Starting evaluation process for question: {}", request.question());
 
+        Optional<EmbeddingMatch<TextSegment>> reference = request.isPurePrompt()
+                ? Optional.empty()
+                : retrieveReference(request.question());
+
+        EvaluationMode mode;
         String rawResponse;
 
         if (request.isPurePrompt()) {
-            // Pure Prompt mode — skip vector retrieval entirely
-            log.info("Mode: PURE PROMPT — skipping RAG retrieval");
-            rawResponse = technicalInterviewer.evaluatePure(
+            mode = EvaluationMode.PURE;
+            rawResponse = technicalInterviewer.evaluatePure(request.question(), request.userAnswer());
+        } else if (reference.isPresent()) {
+            mode = EvaluationMode.RAG;
+            rawResponse = technicalInterviewer.evaluate(
                     request.question(),
+                    reference.get().embedded().text(),
                     request.userAnswer()
             );
         } else {
-            // RAG mode — retrieve reference answer from pgvector
-            log.info("Mode: RAG — retrieving reference answer from vector store");
-            Embedding queryEmbedding = embeddingModel.embed(request.question()).content();
-            List<EmbeddingMatch<TextSegment>> matches = embeddingStore.findRelevant(queryEmbedding, 1);
-
-            String idealAnswer = "No reference pattern found in the database.";
-            if (!matches.isEmpty()) {
-                idealAnswer = matches.getFirst().embedded().text();
-                log.info("Found matching reference context with score: {}", matches.getFirst().score());
-            } else {
-                log.warn("Warning: Proceeding without reference context.");
-            }
-
-            rawResponse = technicalInterviewer.evaluate(
-                    request.question(),
-                    idealAnswer,
-                    request.userAnswer()
-            );
+            // Grading against an unrelated reference is worse than grading without one.
+            mode = EvaluationMode.PURE_FALLBACK;
+            rawResponse = technicalInterviewer.evaluatePure(request.question(), request.userAnswer());
         }
 
-        log.info("Sending prompt to the LLM Judge...");
-
         log.debug("Raw LLM response: {}", rawResponse);
-        EvaluationResponse response = parseResponse(rawResponse);
+        EvaluationResponse verdict = parseResponse(rawResponse);
 
-        saveEvaluationLog(request, response);
+        Double retrievalScore = reference.map(EmbeddingMatch::score).orElse(null);
+        String retrievedReference = reference.map(match -> match.embedded().text()).orElse(null);
 
-        log.info("Evaluation completed successfully. Final score: {}", response.score());
-        return response;
+        saveEvaluationLog(request, verdict, mode, retrievalScore, retrievedReference, rawResponse);
+
+        log.info("Evaluation completed: judge={}, mode={}, score={}",
+                properties.judgeModel(), mode.value(), verdict.score());
+        return EvaluationResult.of(verdict, properties.judgeModel(), mode, retrievalScore, retrievedReference);
+    }
+
+    /**
+     * Returns the closest knowledge-base pair, or empty if even the best match is below
+     * {@code mockbean.rag-min-score}.
+     */
+    private Optional<EmbeddingMatch<TextSegment>> retrieveReference(String question) {
+        Embedding queryEmbedding = embeddingModel.embed(question).content();
+        List<EmbeddingMatch<TextSegment>> matches =
+                embeddingStore.findRelevant(queryEmbedding, 1, properties.ragMinScore());
+
+        if (matches.isEmpty() || matches.getFirst().embedded() == null) {
+            log.warn("No reference with relevance >= {}; falling back to Pure mode.", properties.ragMinScore());
+            return Optional.empty();
+        }
+
+        EmbeddingMatch<TextSegment> best = matches.getFirst();
+        log.info("Retrieved reference (relevance {}): {}",
+                String.format("%.3f", best.score()), firstLine(best.embedded().text()));
+        return Optional.of(best);
+    }
+
+    private static String firstLine(String text) {
+        int newline = text.indexOf('\n');
+        return newline == -1 ? text : text.substring(0, newline);
     }
 
     /**
@@ -103,14 +128,21 @@ public class EvaluationService {
         }
     }
 
-    private void saveEvaluationLog(EvaluationRequest request, EvaluationResponse response) {
+    private void saveEvaluationLog(EvaluationRequest request, EvaluationResponse verdict, EvaluationMode mode,
+                                   Double retrievalScore, String retrievedReference, String rawResponse) {
         EvaluationLog logEntry = EvaluationLog.builder()
                 .question(request.question())
                 .userAnswer(request.userAnswer())
-                .score(response.score())
-                .feedback(response.feedback())
-                .strengths(response.strengths())
-                .missedConcepts(response.missedConcepts())
+                .score(verdict.score())
+                .feedback(verdict.feedback())
+                .strengths(verdict.strengths())
+                .missedConcepts(verdict.missedConcepts())
+                .judgeModel(properties.judgeModel())
+                .requestedMode(request.isPurePrompt() ? EvaluationMode.PURE.value() : EvaluationMode.RAG.value())
+                .effectiveMode(mode.value())
+                .retrievalScore(retrievalScore)
+                .retrievedReference(retrievedReference)
+                .rawResponse(rawResponse)
                 .build();
 
         logRepository.save(logEntry);

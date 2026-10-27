@@ -27,9 +27,7 @@ import requests
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
-BASE_URL        = "http://localhost:8080"
-EVALUATE_URL    = f"{BASE_URL}/api/v1/evaluations"
-HEALTH_URL      = f"{BASE_URL}/actuator/health"
+DEFAULT_BASE_URL = "http://localhost:8080"
 TEST_SET_PATH   = Path("data/test_set.json")
 RESULTS_DIR     = Path("results")
 
@@ -61,9 +59,9 @@ def score_to_bucket(score: float) -> str:
         return "low"
 
 
-def check_api_health() -> bool:
+def check_api_health(base_url: str) -> bool:
     try:
-        r = requests.get(HEALTH_URL, timeout=5)
+        r = requests.get(f"{base_url}/actuator/health", timeout=5)
         status = r.json().get("status", "UNKNOWN")
         print(f"API health: {status}")
         return status == "UP"
@@ -80,7 +78,8 @@ def load_test_set(path: Path) -> list:
 
 # ── Core loop ─────────────────────────────────────────────────────────────────
 
-def run_evaluation(test_set: list, experiment_id: str, model: str, mode: str = "rag") -> list:
+def run_evaluation(test_set: list, experiment_id: str, model: str, mode: str = "rag",
+                   base_url: str = DEFAULT_BASE_URL, delay: float = 0.3) -> list:
     results = []
 
     print(f"\n{'=' * 62}")
@@ -103,9 +102,11 @@ def run_evaluation(test_set: list, experiment_id: str, model: str, mode: str = "
         error_msg = ""
         llm_score = -1.0
         feedback = strengths = missed = ""
+        effective_mode = judge_model = retrieved_reference = ""
+        retrieval_score = ""
 
         try:
-            response = requests.post(EVALUATE_URL, json=payload, timeout=120)
+            response = requests.post(f"{base_url}/api/v1/evaluations", json=payload, timeout=120)
             latency_ms = int((time.monotonic() - start) * 1000)
             response.raise_for_status()
             body = response.json()
@@ -114,6 +115,11 @@ def run_evaluation(test_set: list, experiment_id: str, model: str, mode: str = "
             feedback   = body.get("feedback", "")
             strengths  = "; ".join(body.get("strengths", []))
             missed     = "; ".join(body.get("missedConcepts", []))
+            # What the judge actually saw - present since the Q&A-chunking change
+            effective_mode      = body.get("mode") or ""
+            judge_model         = body.get("judgeModel") or ""
+            retrieval_score     = body.get("retrievalScore") if body.get("retrievalScore") is not None else ""
+            retrieved_reference = body.get("retrievedReference") or ""
 
         except Exception as e:
             latency_ms = int((time.monotonic() - start) * 1000)
@@ -131,6 +137,8 @@ def run_evaluation(test_set: list, experiment_id: str, model: str, mode: str = "
             "experiment_id":   experiment_id,
             "model":           model,
             "mode":            mode,
+            "effective_mode":  effective_mode,
+            "judge_model":     judge_model,
             "test_id":         case["id"],
             "topic":           case["topic"],
             "question":        case["question"],
@@ -143,12 +151,14 @@ def run_evaluation(test_set: list, experiment_id: str, model: str, mode: str = "
             "feedback":        feedback,
             "strengths":       strengths,
             "missed_concepts": missed,
+            "retrieval_score": retrieval_score,
+            "retrieved_reference": retrieved_reference,
             "latency_ms":      latency_ms,
             "timestamp":       datetime.utcnow().isoformat(),
             "error":           error_msg,
         })
 
-        time.sleep(0.3)   # small pause — be kind to Ollama
+        time.sleep(delay)   # pause between calls - raise it for rate-limited free API tiers
 
     return results
 
@@ -195,15 +205,17 @@ def print_summary(results: list):
 
 # ── Save ─────────────────────────────────────────────────────────────────────
 
-def save_results(results: list, experiment_id: str) -> Path:
-    RESULTS_DIR.mkdir(exist_ok=True)
-    out = RESULTS_DIR / f"{experiment_id}.csv"
+def save_results(results: list, experiment_id: str, out_dir: Path = RESULTS_DIR) -> Path:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out = out_dir / f"{experiment_id}.csv"
 
     fields = [
-        "experiment_id", "model", "mode", "test_id", "topic", "question",
+        "experiment_id", "model", "mode", "effective_mode", "judge_model",
+        "test_id", "topic", "question",
         "candidate_answer", "human_label", "expected_bucket",
         "llm_score", "predicted_bucket", "match",
         "feedback", "strengths", "missed_concepts",
+        "retrieval_score", "retrieved_reference",
         "latency_ms", "timestamp", "error",
     ]
     with open(out, "w", newline="", encoding="utf-8") as f:
@@ -234,6 +246,18 @@ def main():
         "--test-set", default=str(TEST_SET_PATH),
         help=f"Path to test set JSON (default: {TEST_SET_PATH})"
     )
+    parser.add_argument(
+        "--base-url", default=DEFAULT_BASE_URL,
+        help=f"MockBean API base URL (default: {DEFAULT_BASE_URL})"
+    )
+    parser.add_argument(
+        "--out-dir", default=str(RESULTS_DIR),
+        help=f"Directory for the results CSV (default: {RESULTS_DIR})"
+    )
+    parser.add_argument(
+        "--delay", type=float, default=0.3,
+        help="Seconds to wait between requests (default: 0.3; e.g. 7 for Gemini's free tier)"
+    )
     args = parser.parse_args()
 
     experiment_id = args.experiment or f"{args.model}_{args.mode}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
@@ -243,12 +267,12 @@ def main():
         print(f"ERROR: test set not found at '{test_set_path}'")
         raise SystemExit(1)
 
-    check_api_health()
+    check_api_health(args.base_url)
     test_set = load_test_set(test_set_path)
 
-    results = run_evaluation(test_set, experiment_id, args.model, args.mode)
+    results = run_evaluation(test_set, experiment_id, args.model, args.mode, args.base_url, args.delay)
     print_summary(results)
-    save_results(results, experiment_id)
+    save_results(results, experiment_id, Path(args.out_dir))
 
 
 if __name__ == "__main__":
